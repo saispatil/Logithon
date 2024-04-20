@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_26610dda46b03079d66091b430bc7a06 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+</head>
+<body>
+
+
+            <div class="folium-map" id="map_26610dda46b03079d66091b430bc7a06" ></div>
+
+</body>
+<script>
+
+
+            var map_26610dda46b03079d66091b430bc7a06 = L.map(
+                "map_26610dda46b03079d66091b430bc7a06",
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+
+
+
+
+            var tile_layer_ec0b43d6886bb303e7a872b87d54455c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+
+
+            tile_layer_ec0b43d6886bb303e7a872b87d54455c.addTo(map_26610dda46b03079d66091b430bc7a06);
+
+
+            var marker_0bc1ff65ed0b6a3e93224c9ba30a8042 = L.marker(
+                [25.255, 55.364],
+                {}
+            ).addTo(map_26610dda46b03079d66091b430bc7a06);
+
+
+        var popup_bd15b9efb30ade6a64a3c4a005c265de = L.popup({"maxWidth": "100%"});
+
+
+
+                var html_e42aff28b3513778ff2c3d26b03431bd = $(<div id="html_e42aff28b3513778ff2c3d26b03431bd" style="width: 100.0%; height: 100.0%;">DUBAI INTERNATIONAL</div>)[0];
+                popup_bd15b9efb30ade6a64a3c4a005c265de.setContent(html_e42aff28b3513778ff2c3d26b03431bd);
+
+
+
+        marker_0bc1ff65ed0b6a3e93224c9ba30a8042.bindPopup(popup_bd15b9efb30ade6a64a3c4a005c265de)
+        ;
+
+
+
+
+            var marker_9726923d4e986ae24508a6aee8d028a8 = L.marker(
+                [19.089, 72.868],
+                {}
+            ).addTo(map_26610dda46b03079d66091b430bc7a06);
+
+
+        var popup_db3a87a37609178ee06eacb7f95d17b7 = L.popup({"maxWidth": "100%"});
+
+
+
+                var html_cd14997233aaaf032d8a3bed69034de6 = $(<div id="html_cd14997233aaaf032d8a3bed69034de6" style="width: 100.0%; height: 100.0%;">CHHATRAPATI SHIVAJI INTERNATIONAL</div>)[0];
+                popup_db3a87a37609178ee06eacb7f95d17b7.setContent(html_cd14997233aaaf032d8a3bed69034de6);
+
+
+
+        marker_9726923d4e986ae24508a6aee8d028a8.bindPopup(popup_db3a87a37609178ee06eacb7f95d17b7)
+        ;
+
+
+
+
+            var poly_line_c8ea1a15fb4fa4267a95e7d9988fac31 = L.polyline(
+                [[25.255, 55.364], [19.089, 72.868]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_26610dda46b03079d66091b430bc7a06);
+
+</script>
+</html>
