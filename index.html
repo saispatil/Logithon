@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Directions</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculate Directions, Fuel Consumption, and Fuel Cost</h1>
+    <div id="map"></div>
+    <form id="directions-form">
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" name="origin" required><br><br>
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination" required><br><br>
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div id="directions-panel"></div>
+
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 40.7128, lng: -74.0060 }, // Default to New York
+                zoom: 12,
+            });
+
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map,
+                panel: document.getElementById("directions-panel"),
+                suppressPolylines: false, // Display polylines for all routes
+            });
+
+            const originAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("origin")
+            );
+            originAutocomplete.bindTo("bounds", map);
+
+            const destinationAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("destination")
+            );
+            destinationAutocomplete.bindTo("bounds", map);
+
+            document.getElementById("directions-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                calculateAndDisplayRoutes(directionsService, directionsRenderer);
+            });
+        }
+
+        function calculateAndDisplayRoutes(directionsService, directionsRenderer) {
+            const origin = document.getElementById("origin").value;
+            const destination = document.getElementById("destination").value;
+
+            directionsService.route(
+                {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: "DRIVING",
+                    provideRouteAlternatives: true, // Request multiple alternative routes
+                },
+                (response, status) => {
+                    if (status === "OK") {
+                        directionsRenderer.setDirections(response);
+                        displayRouteInfo(response);
+                    } else {
+                        window.alert("Directions request failed due to " + status);
+                    }
+                }
+            );
+        }
+
+        function displayRouteInfo(directionsResult) {
+            const routes = directionsResult.routes;
+            const infoPanel = document.getElementById("directions-panel");
+            infoPanel.innerHTML = '';
+
+            routes.forEach((route, index) => {
+                const distance = route.legs[0].distance.text;
+                const duration = route.legs[0].duration.text;
+                const fuelConsumption = calculateFuelConsumption(route.legs[0].distance.value);
+                const fuelCost = calculateFuelCost(fuelConsumption);
+
+                const routeInfo = `
+                    <p><strong>Route ${index + 1}</strong></p>
+                    <p>Distance: ${distance}</p>
+                    <p>Duration: ${duration}</p>
+                    <p>Fuel Consumption: ${fuelConsumption.toFixed(2)} liters</p>
+                    <p>Fuel Cost: ₹${fuelCost.toFixed(2)}</p>
+                    <hr>
+                `;
+                infoPanel.innerHTML += routeInfo;
+            });
+        }
+
+        function calculateFuelConsumption(distanceInMeters) {
+            // Assuming fuel consumption of 8 liters per 100 kilometers
+            const distanceInKm = distanceInMeters / 1000;
+            const fuelConsumption = distanceInKm * 0.08; // 8 liters per 100 kilometers
+            return fuelConsumption;
+        }
+
+        function calculateFuelCost(fuelConsumption) {
+            // Get real-time fuel price using an API (replace with actual API call)
+            // For demonstration purposes, we'll use a fixed fuel price of ₹100 per liter
+            const fuelPriceINR = 100; // Replace with actual fuel price obtained from API
+            const fuelCostINR = fuelConsumption * fuelPriceINR;
+            return fuelCostINR;
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNJlRiTXD1y9q1g-BVi3fgOVCkUnrPOxY&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
